@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Provider } from "react-redux";
+import Form from "./components/Form";
+import View from "./components/View";
+import { store } from "./redux/store";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [data , setData ] = React.useState({})
+
+    const handleSubmit = (values) => {
+
+        console.log("values", values)
+        setData(values)
+
+    }
+
+    return (
+        <Provider store={store}>
+            
+            <Form onSubmit={handleSubmit} />
+
+            <View data={data} />
+        </Provider>
+    );
 }
 
 export default App;
